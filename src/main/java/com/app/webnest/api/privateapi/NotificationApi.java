@@ -30,4 +30,9 @@ public class NotificationApi {
         NotificationResponseDTO notificationResponseDTO = new NotificationResponseDTO(foundFollows, foundComments, foundPosts);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("newNotifications", notificationResponseDTO));
     }
+
+//    @PostMapping("set-notification")
+//    public ResponseEntity<ApiResponseDTO> setNotification(@RequestBody PostNotificationDTO postNotificationDTO){
+//        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("newNotifications", notificationResponseDTO));
+//    }
 }
