@@ -44,8 +44,10 @@ public class UserAuthApi {
   public ResponseEntity<ApiResponseDTO> modify(Authentication authentication, @RequestBody UserVO userVO) {
     Long myId = getUserByToken(authentication).getId();
     userVO.setId(myId);
-    userService.modify(userVO);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponseDTO.of("정보 수정이 완료되었습니다.")); // 200
+    UserResponseDTO updatedUser = userService.modify(userVO);
+    updatedUser.setUserPassword(null); // 비밀번호는 응답에서 제외
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(ApiResponseDTO.of("정보 수정이 완료되었습니다.", updatedUser)); // 200
   }
 
   @DeleteMapping("/unregister")
